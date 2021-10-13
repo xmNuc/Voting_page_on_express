@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(83, 103, 126);
+  color: azure;
+}
+.wrap {
+  display: block;
+  height: 20vh;
+  max-width: 1240px;
+  margin: 0 auto;
+  background-color: rgb(41, 25, 66);
+  text-align: center;
+  border-radius: 20px;
+}
+.wrap h1 {
+  margin-top: 30px;
+  padding-top: 20px;
+}
+a {
+  text-decoration: none;
+  color: antiquewhite;
+}
+a:hover {
+  color: blanchedalmond;
+}
+.vote h2 {
+  background-color: rgb(22, 81, 136);
+  display: inline-block;
+  margin: 40px 20px;
+  padding: 10px;
+  border-radius: 30px;
+}
+.vote h2:hover {
+  background-color: black;
+  cursor: pointer;
+}
