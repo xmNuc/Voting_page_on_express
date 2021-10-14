@@ -5,19 +5,33 @@ const voteRouter = express.Router();
 let voteY = 0;
 let voteN = 0;
 let voteM = 0;
+let saveIp;
 
 voteRouter
   .get('/yes', (req, res) => {
-    voteY++;
-    res.send('Voted Yes');
+    if (saveIp) {
+      return res.send('you alredy voted');
+    } else {
+      voteY++;
+      saveIp = req.ip;
+      res.send(`Voted Yes from IP: ${req.ip}`);
+    }
   })
   .get('/no', (req, res) => {
-    voteN++;
-    res.send('Voted No');
+    if (saveIp) {
+      return res.send('you alredy voted');
+    } else {
+      voteN++;
+      res.send('Voted No');
+    }
   })
   .get('/maybe', (req, res) => {
-    voteM++;
-    res.send('Voted maybe');
+    if (saveIp) {
+      return res.send('you alredy voted');
+    } else {
+      voteM++;
+      res.send('Voted Maybe');
+    }
   })
   .get('/check', (req, res) => {
     res.send(
