@@ -7,22 +7,19 @@ let voteN = 0;
 let voteM = 0;
 
 voteRouter
-  .get('/', (req, res) => {
-    res.send('ok');
-  })
-  .get('/vote/yes', (req, res) => {
+  .get('/yes', (req, res) => {
     voteY++;
     res.send('Voted Yes');
   })
-  .get('/vote/no', (req, res) => {
+  .get('/no', (req, res) => {
     voteN++;
     res.send('Voted No');
   })
-  .get('/vote/maybe', (req, res) => {
+  .get('/maybe', (req, res) => {
     voteM++;
     res.send('Voted maybe');
   })
-  .get('/vote/check', (req, res) => {
+  .get('/check', (req, res) => {
     res.send(
       `Vote result: \n Vote Yes: ${voteY}\n Vote no: ${voteN}\n Vote maybe: ${voteM}`
     );
