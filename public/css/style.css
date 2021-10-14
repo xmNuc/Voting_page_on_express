@@ -39,3 +39,7 @@ a:hover {
   background-color: black;
   cursor: pointer;
 }
+
+p {
+  font-size: 2em;
+}
