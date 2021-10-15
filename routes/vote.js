@@ -1,4 +1,5 @@
 const express = require('express');
+const { IpRestrict } = require('../utils/ip-restrict');
 
 const voteRouter = express.Router();
 
@@ -7,22 +8,24 @@ const votes = {
   no: 0,
 };
 
+const ipRestrict = new IpRestrict();
+
 // let voteY = 0;
 // let voteN = 0;
 // let voteM = 0;
-let saveIp;
+// let saveIp;
 
 voteRouter
   .get('/check', (req, res) => {
     const info = Object.entries(votes)
-      .map((ar) => `Votes on ${ar[0]}: ${ar[1]}`)
+      .map((ar) => `<h2>Votes on ${ar[0]}: ${ar[1]}</h2>`)
       .join('<br>');
 
     res.send(info);
   })
   .get('/:voteName', (req, res) => {
-    if (saveIp) {
-      return res.send('you alredy voted');
+    if (!ipRestrict.check(req.ip)) {
+      return res.send(`<h2>you alredy voted<h2>`);
     } else {
       const { voteName } = req.params;
       if (typeof votes[voteName] === 'undefined') {
@@ -30,7 +33,7 @@ voteRouter
       }
       votes[voteName]++;
       saveIp = req.ip;
-      res.send(`Voted Yes from IP: ${req.ip}`);
+      res.send(`<h2>Voted Yes from IP: ${req.ip}</h2>`);
     }
   });
 
